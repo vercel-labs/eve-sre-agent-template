@@ -4,7 +4,7 @@ NOTES:
 - for top-level bullet points with many notes, prefer placing them in a toggle list (if supported)
 -->
 
-# On-Call Shift: $startMonthAndDay - $endMonthAndDay
+# On-call shift: $startMonthAndDay - $endMonthAndDay
 
 ## Overview
 
