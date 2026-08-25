@@ -4,7 +4,7 @@ Guidance for AI coding agents working in this repository.
 
 ## Project overview
 
-**sre** is a Slack incident response agent built on [eve](https://eve.dev). It pulls evidence from Datadog, GitHub, and Slack. The agent lives under `agent/`.
+**sre** is a Slack incident response agent built on [eve](https://eve.dev). It pulls evidence from Datadog, GitHub, Slack, and Vercel. The agent lives under `agent/`.
 
 ## Setup & commands
 

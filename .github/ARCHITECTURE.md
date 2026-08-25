@@ -9,7 +9,7 @@
 
 ## Overview
 
-sre is a Slack incident response agent. It investigates production issues with evidence from Datadog, GitHub, and Slack. Investigations start from a Slack mention or direct message, from a watched channel message, or from a `POST /v1/investigate` webhook call. The agent records typed evidence for each finding and renders it in the Slack reply.
+sre is a Slack incident response agent. It investigates production issues with evidence from Datadog, GitHub, Slack, and Vercel. Investigations start from a Slack mention or direct message, from a watched channel message, or from a `POST /v1/investigate` webhook call. The agent records typed evidence for each finding and renders it in the Slack reply.
 
 ## Directory map
 
@@ -23,17 +23,17 @@ agent/
   connections/        Datadog and Vercel MCP connections
   extensions/         GitHub tools extension
   instructions/       System instructions and date context
-  tools/              Evidence, Slack read, Datadog link, watch, and skill tools
+  tools/              Evidence, Slack read, watch, and skill tools
   skills/             Built-in investigation skills
     custom.ts         Custom skills loader (optional, needs Blob)
   lib/                Shared logic
-    auth/             Slack user auth helpers
+    auth.ts           Slack user auth helpers
+    blob.ts           Vercel Blob object store
+    evidence.ts       Investigation evidence state and rendering
     channel-watch/    Watchlist store and admission (optional, needs Blob)
-    investigation/    Evidence, rendering, and webhook session logic
     skills/           Custom skill store (optional, needs Blob)
-    slack/            Message parsing helpers
-    vendors/          Blob and Datadog helpers
-    webhooks/         Webhook auth and request parsing
+    slack/            Message parsing and investigation rendering
+    webhook/          Webhook auth, request parsing, and session logic
 ```
 
 Channel watch and custom skills are optional. Both need the private Vercel Blob store. The rest of the agent works without Blob.
@@ -46,7 +46,7 @@ Channel watch and custom skills are optional. Both need the private Vercel Blob 
 | Slack channel    | `agent/channels/slack.ts`   | Handles mentions, DMs, and watched channel messages.  |
 | Webhook channel  | `agent/channels/webhook.ts` | Accepts `POST /v1/investigate` and starts Slack runs. |
 | Instructions     | `agent/instructions/`       | Defines identity, rules, and tool guidance.           |
-| Evidence system  | `agent/lib/investigation/`  | Records findings and renders them as Block Kit cards. |
+| Evidence system  | `agent/lib/evidence.ts`     | Records findings and renders them for agent and Slack replies. |
 | Channel watch    | `agent/lib/channel-watch/`  | Admits top-level messages from watched channels.      |
 | Custom skills    | `agent/lib/skills/`         | Stores user and global runbooks in Blob.              |
 | Connectors       | `agent/lib/constants.ts`    | Resolves Slack, GitHub, Datadog, and Vercel connector UIDs. |

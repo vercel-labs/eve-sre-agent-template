@@ -7,7 +7,7 @@
 [![Agent Stack](https://img.shields.io/badge/Agent%20Stack-000?style=flat-square&logo=vercel&logoColor=FFF&labelColor=000&color=000)](https://vercel.com/kb/agent-stack)
 [![MIT License](https://img.shields.io/badge/License-MIT-000?style=flat-square&logo=opensourceinitiative&logoColor=white&labelColor=000&color=000)](LICENSE)
 
-sre is an [eve](https://eve.dev) incident response agent for Slack. It brings together the observability data you need to debug an alert or incident across Datadog, GitHub, and other tools. Investigations are read-only by default.
+sre is an [eve](https://eve.dev) incident response agent for Slack. It brings together the observability data you need to debug an alert or incident across Datadog, GitHub, Vercel, and other tools. Investigations are read-only by default.
 
 Mention `@sre`, watch a channel for alerts, or invoke it from an external system with a webhook. The agent checks hypotheses against live signals and records each finding with a source link. Replies start with the answer, then the supporting evidence.
 

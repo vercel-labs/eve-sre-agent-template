@@ -43,7 +43,7 @@ pnpm exec eve link --project <project-name> --team <team> --non-interactive
 <!--AGENTS: please pause and mention this before proceeding-->
 
 - When setting up the GitHub connector, instruct the user to prefer checking "readonly" on the permissions for maximum security.
-- When provisioning Datadog, instruct the user to generate either a [PAT](https://docs.datadoghq.com/account_management/personal-access-tokens/) or [SAT](https://docs.datadoghq.com/account_management/service-access-tokens/). Prefer read-only permissions Run the Datadog command yourself in an interactive terminal: it prompts for the token. Do not pass the token to an agent or put it in a command argument.
+- When provisioning Datadog, instruct the user to generate either a [PAT](https://docs.datadoghq.com/account_management/personal-access-tokens/) or [SAT](https://docs.datadoghq.com/account_management/service-access-tokens/). Prefer read-only permissions. Run the Datadog command yourself in an interactive terminal: it prompts for the token. Do not pass the token to an agent or put it in a command argument.
 
 ```bash
 vercel connect create slack --name sre --triggers

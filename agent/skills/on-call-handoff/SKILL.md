@@ -1,6 +1,6 @@
 ---
 name: on-call-handoff
-description: Summarize a personal or team on-call shift from supplied context, Slack, Datadog, and GitHub. Activate when asked for an on-call handoff, shift summary, rotation handoff, what to tell the next on-call, or leaving on-call.
+description: Summarize a personal or team on-call shift from supplied context, Slack, Datadog, GitHub, and Vercel. Activate when asked for an on-call handoff, shift summary, rotation handoff, what to tell the next on-call, or leaving on-call.
 ---
 
 # On-call handoff

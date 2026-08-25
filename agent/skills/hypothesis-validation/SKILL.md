@@ -1,11 +1,11 @@
 ---
 name: hypothesis-validation
-description: Given a hypothesis, take the necessary investigation steps to validate or invalidate the hypothesis.
+description: Given a hypothesis, take the necessary investigation steps to validate, invalidate, or reach an inconclusive result for the hypothesis.
 ---
 
 # Hypothesis Validation
 
-Investigate the related context for a given hypothesis holistically. Record evidence and conclude whether the hypothesis is validated or invalidated.
+Investigate the related context for a given hypothesis holistically. Record evidence and conclude whether the hypothesis is validated, invalidated, or inconclusive.
 
 ## Procedure
 
@@ -23,7 +23,7 @@ The goal here is getting a quick hydration of possibly relevant context for the 
 
 ### 2: Dig deep
 
-After identifying possibly relevant context, dig deep into the most relevant pieces of context to gather enough evidence to validate or invalidate the hypothesis.
+After identifying possibly relevant context, dig deep into the most relevant pieces of context to gather enough evidence to validate, invalidate, or reach an inconclusive result for the hypothesis.
 
 Record findings as you dig. Follow the Evidence rules in the agent instructions. Call `evidence_record`, `evidence_remove`, and `evidence_list` as those rules say.
 
