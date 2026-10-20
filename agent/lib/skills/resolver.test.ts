@@ -3,6 +3,8 @@ import { test } from "node:test";
 import { resolveCustomSkills } from "./resolver.ts";
 import type { StoredSkill } from "./store.ts";
 
+const SKILL_LOAD_NAME_PATTERN = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$/;
+
 const globalSkill: StoredSkill = {
   description: "Use when a deployment runbook is needed.",
   markdown: "# Global",
@@ -82,6 +84,35 @@ test("keeps available skills when one scope fails to load", async () => {
   );
 
   assert.equal(resolved?.["custom-deploy"]?.markdown, "# Personal");
+});
+
+test("long stored names remain loadable and preserve personal overrides", async () => {
+  const names = [
+    "a".repeat(57),
+    "a".repeat(58),
+    "a".repeat(64),
+    `${"a".repeat(63)}b`,
+  ] as const;
+  const resolved = await resolveCustomSkills(null, {
+    list(_auth, scope) {
+      return Promise.resolve(
+        scope === "global"
+          ? names.map((name) => ({ ...globalSkill, markdown: name, name }))
+          : [{ ...userSkill, name: names[2] }]
+      );
+    },
+  });
+
+  const entries = Object.entries(resolved ?? {});
+  assert.equal(entries.length, 4);
+  for (const [name] of entries) {
+    assert.match(name, SKILL_LOAD_NAME_PATTERN);
+  }
+  assert.equal(resolved?.[`custom-${names[0]}`]?.markdown, names[0]);
+  assert.deepEqual(
+    entries.map(([, skill]) => skill.markdown),
+    [names[0], names[1], "# Personal", names[3]]
+  );
 });
 
 test("continues without custom skills when storage is unavailable", async () => {

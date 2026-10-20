@@ -84,7 +84,7 @@ The endpoint uses `WEBHOOK_SECRET`. Send the secret with `x-sre-webhook-secret` 
 
 ### Create runbooks in Slack
 
-Ask `@sre` to create a runbook for a recurring alert or incident. Global runbooks apply to every session. Personal runbooks apply only to the requesting Slack user and override global runbooks with the same name. The agent loads a saved runbook on a later matching request, not during the request that creates it. Private Vercel Blob storage is required to save and load runbooks.
+Ask `@sre` to create a runbook for a recurring alert or incident. Global runbooks apply to every session. Personal runbooks apply only to the requesting Slack user and override global runbooks with the same name. The agent loads a saved runbook on a later matching request, not during the request that creates it. Private Vercel Blob storage is required to save and load runbooks. Stored names can contain up to 64 characters. Names longer than 57 characters receive a shortened, hash-suffixed load name so they fit eve's runtime limit; the stored name used to list or delete the runbook stays unchanged.
 
 ## Verify changes
 

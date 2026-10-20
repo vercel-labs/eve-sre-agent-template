@@ -3,12 +3,9 @@ import type { SlackUserAuthLike } from "#lib/auth.ts";
 import {
   type CustomSkillStore,
   getCustomSkillStore,
+  getSkillLoadName,
   type StoredSkill,
 } from "#lib/skills/store.ts";
-
-function loadName(skill: StoredSkill): string {
-  return `custom-${skill.name}`;
-}
 
 function loadableSkill(skill: StoredSkill) {
   return defineSkill({
@@ -48,11 +45,11 @@ export async function resolveCustomSkills(
 
   const entries = new Map<string, ReturnType<typeof defineSkill>>();
   for (const skill of globalSkills) {
-    entries.set(loadName(skill), loadableSkill(skill));
+    entries.set(getSkillLoadName(skill.name), loadableSkill(skill));
   }
   // A personal skill with the same name overrides the shared global skill.
   for (const skill of userSkills) {
-    entries.set(loadName(skill), loadableSkill(skill));
+    entries.set(getSkillLoadName(skill.name), loadableSkill(skill));
   }
 
   return entries.size > 0 ? Object.fromEntries(entries) : null;
