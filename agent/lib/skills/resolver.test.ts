@@ -92,6 +92,7 @@ test("long stored names remain loadable and preserve personal overrides", async 
     "a".repeat(58),
     "a".repeat(64),
     `${"a".repeat(63)}b`,
+    `${"a".repeat(40)}-d5c039b748aa6466`,
   ] as const;
   const resolved = await resolveCustomSkills(null, {
     list(_auth, scope) {
@@ -104,14 +105,14 @@ test("long stored names remain loadable and preserve personal overrides", async 
   });
 
   const entries = Object.entries(resolved ?? {});
-  assert.equal(entries.length, 4);
+  assert.equal(entries.length, 5);
   for (const [name] of entries) {
     assert.match(name, SKILL_LOAD_NAME_PATTERN);
   }
   assert.equal(resolved?.[`custom-${names[0]}`]?.markdown, names[0]);
   assert.deepEqual(
     entries.map(([, skill]) => skill.markdown),
-    [names[0], names[1], "# Personal", names[3]]
+    [names[0], names[1], "# Personal", names[3], names[4]]
   );
 });
 

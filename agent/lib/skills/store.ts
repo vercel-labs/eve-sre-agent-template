@@ -74,13 +74,16 @@ function pathSafe(value: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-/** Keeps stored names intact while fitting eve's 64-character runtime limit. */
+/**
+ * Fits eve's runtime limit without changing stored names.
+ * The underscore separates shortened names from ordinary hyphenated identifiers.
+ */
 export function getSkillLoadName(name: string): string {
   if (name.length <= 57) {
     return `custom-${name}`;
   }
   const suffix = createHash("sha256").update(name).digest("hex").slice(0, 16);
-  return `custom-${name.slice(0, 40)}-${suffix}`;
+  return `custom_${name.slice(0, 40)}-${suffix}`;
 }
 
 export function normalizeSkillName(raw: string): string {
