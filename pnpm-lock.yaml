@@ -13,19 +13,19 @@ importers:
         version: 4.0.8(zod@4.3.6)
       '@github-tools/eve-extension':
         specifier: ^0.3.2
-        version: 0.3.2(@vercel/connect@0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))
+        version: 0.3.2(@vercel/connect@0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))
       '@vercel/blob':
         specifier: 2.4.0
         version: 2.4.0
       '@vercel/connect':
         specifier: 0.4.2
-        version: 0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))
+        version: 0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))
       ai:
-        specifier: ^7.0.128
-        version: 7.0.128(zod@4.3.6)
+        specifier: ^7.0.137
+        version: 7.0.137(zod@4.3.6)
       eve:
-        specifier: 0.73.0
-        version: 0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)
+        specifier: 0.81.1
+        version: 0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)
       zod:
         specifier: 4.3.6
         version: 4.3.6
@@ -48,8 +48,8 @@ importers:
 
 packages:
 
-  '@ai-sdk/gateway@4.0.104':
-    resolution: {integrity: sha512-4lTyt8a4BMfVz4QGo+VO5odakmYMX5kq+xiRgdQGGY7o/jP2WSasp6LvIvYvt/lHzz1MfE+xKTOJhz7mMwjynA==}
+  '@ai-sdk/gateway@4.0.110':
+    resolution: {integrity: sha512-5IwnOR6v7KC+D9eddUqsCobXl/FbLUVb2LaQc/uyuQdpP3/n9s0YLc9zl4/W3IS/R2pjHrqUfCzEAeOu7bFLoQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -66,8 +66,8 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider-utils@5.0.54':
-    resolution: {integrity: sha512-amqDxFnw9+dpVrDACRDGmExUUNOH9C1D2bhg/DqWJnamEOieDTXBBXLHujSby/0MqHdAFksnpE8Pzfqx6ABMBw==}
+  '@ai-sdk/provider-utils@5.0.58':
+    resolution: {integrity: sha512-iXSwKR/7LpHzAlyrUl+bTinwzmZ3Nmup1viwPisM5Gn5cogRdIG4rV9w1ZDuKFcrXyu/AeVs42E1CX/0aNwrfQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -76,8 +76,8 @@ packages:
     resolution: {integrity: sha512-pfPoy9J1B1xV7cqJ8MYHOsDYrMv5tR3+EMNfI249OhkD2uRakvav3Fo7XpD2luuN/YNCBY7KfEQc7vEV7KEtyw==}
     engines: {node: '>=22'}
 
-  '@ai-sdk/provider@4.0.22':
-    resolution: {integrity: sha512-1Jtmn36VNMOBo9CMUQrPqsR744qtqRloEiXpWCYS8ffPlhS2CrSNmoho5lPjp3R7EnkzBsGI6p51TA7fQJQZdA==}
+  '@ai-sdk/provider@4.0.26':
+    resolution: {integrity: sha512-BZ443uBEq6HuMA+Z4b7Hpm65GpZSo7pWqnYqpf/7tAO3C48JbtvAhOE2JnODFj+jodsZzfRHkAyQb64xuD2tZQ==}
     engines: {node: '>=22'}
 
   '@babel/helper-string-parser@7.29.7':
@@ -755,8 +755,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  ai@7.0.128:
-    resolution: {integrity: sha512-WMKN83DodYtH52ETPHq0jrSwj3wU0aHkhLHXMrwMRabC/aMpIqeWsXJgjkUwrOqkaKHWONdupk/2ttPRvAyFcg==}
+  ai@7.0.137:
+    resolution: {integrity: sha512-JxrPkSQknxIN/gYqS3UQksExS6eWI23QMPBrKMGXeeFHhru6xFtF4MuMq17WaHD+lXPh0lne6H0BM2Z2VMW9EQ==}
     engines: {node: '>=22'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -843,15 +843,15 @@ packages:
     resolution: {integrity: sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==}
     engines: {node: '>=18'}
 
-  eve@0.73.0:
-    resolution: {integrity: sha512-MvavT0wp31lprBeSzkzxLO0omPYD1143WxBlnCcN4s2yON1j6LrZ3spl7fpjy/NLHE3je45C+QChiDzcH2vkOA==}
+  eve@0.81.1:
+    resolution: {integrity: sha512-kOjykogXDocRtz65OJtxFvkvoSXai/sWDonzTVXA2NKkJr4/Nnxt1RAuwQo2haf614CX54oQy1eY4y9pHbc1Iw==}
     engines: {node: '>=24'}
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.0.0
-      ai: ^7.0.128
+      ai: ^7.0.137
       braintrust: ^3.0.0
-      chat: ^4.41.0
+      chat: ^4.42.0
       dd-trace: ^6.13.0
       just-bash: ^3.1.0
       microsandbox: ^0.5.0
@@ -1315,10 +1315,10 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/gateway@4.0.104(zod@4.3.6)':
+  '@ai-sdk/gateway@4.0.110(zod@4.3.6)':
     dependencies:
-      '@ai-sdk/provider': 4.0.22
-      '@ai-sdk/provider-utils': 5.0.54(zod@4.3.6)
+      '@ai-sdk/provider': 4.0.26
+      '@ai-sdk/provider-utils': 5.0.58(zod@4.3.6)
       '@vercel/oidc': 3.2.0
       zod: 4.3.6
 
@@ -1336,9 +1336,9 @@ snapshots:
       eventsource-parser: 3.1.1
       zod: 4.3.6
 
-  '@ai-sdk/provider-utils@5.0.54(zod@4.3.6)':
+  '@ai-sdk/provider-utils@5.0.58(zod@4.3.6)':
     dependencies:
-      '@ai-sdk/provider': 4.0.22
+      '@ai-sdk/provider': 4.0.26
       '@standard-schema/spec': 1.1.0
       '@workflow/serde': 4.1.0
       eventsource-parser: 3.1.1
@@ -1349,7 +1349,7 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/provider@4.0.22':
+  '@ai-sdk/provider@4.0.26':
     dependencies:
       json-schema: 0.4.0
 
@@ -1413,27 +1413,27 @@ snapshots:
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
 
-  '@github-tools/eve-extension@0.3.2(@vercel/connect@0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))':
+  '@github-tools/eve-extension@0.3.2(@vercel/connect@0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))':
     dependencies:
-      '@github-tools/sdk': 1.11.1(@vercel/connect@0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))(zod@4.3.6)
-      eve: 0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)
+      '@github-tools/sdk': 1.11.1(@vercel/connect@0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))(zod@4.3.6)
+      eve: 0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)
       zod: 4.3.6
     optionalDependencies:
-      '@vercel/connect': 0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))
+      '@vercel/connect': 0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))
     transitivePeerDependencies:
       - '@ai-sdk/workflow'
       - '@workflow/ai'
       - ai
       - workflow
 
-  '@github-tools/sdk@1.11.1(@vercel/connect@0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))(zod@4.3.6)':
+  '@github-tools/sdk@1.11.1(@vercel/connect@0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)))(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))(zod@4.3.6)':
     dependencies:
-      ai: 7.0.128(zod@4.3.6)
+      ai: 7.0.137(zod@4.3.6)
       octokit: 5.0.5
       zod: 4.3.6
     optionalDependencies:
-      '@vercel/connect': 0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))
-      eve: 0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)
+      '@vercel/connect': 0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))
+      eve: 0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -1810,12 +1810,12 @@ snapshots:
     dependencies:
       execa: 5.1.1
 
-  '@vercel/connect@0.4.2(ai@7.0.128(zod@4.3.6))(eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10))':
+  '@vercel/connect@0.4.2(ai@7.0.137(zod@4.3.6))(eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10))':
     dependencies:
       '@vercel/oidc': 3.8.0
     optionalDependencies:
-      ai: 7.0.128(zod@4.3.6)
-      eve: 0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10)
+      ai: 7.0.137(zod@4.3.6)
+      eve: 0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10)
 
   '@vercel/oidc@3.2.0': {}
 
@@ -1829,11 +1829,11 @@ snapshots:
 
   acorn@8.18.0: {}
 
-  ai@7.0.128(zod@4.3.6):
+  ai@7.0.137(zod@4.3.6):
     dependencies:
-      '@ai-sdk/gateway': 4.0.104(zod@4.3.6)
-      '@ai-sdk/provider': 4.0.22
-      '@ai-sdk/provider-utils': 5.0.54(zod@4.3.6)
+      '@ai-sdk/gateway': 4.0.110(zod@4.3.6)
+      '@ai-sdk/provider': 4.0.26
+      '@ai-sdk/provider-utils': 5.0.58(zod@4.3.6)
       zod: 4.3.6
 
   ansi-escapes@7.3.0:
@@ -1900,9 +1900,9 @@ snapshots:
 
   environment@1.1.0: {}
 
-  eve@0.73.0(ai@7.0.128(zod@4.3.6))(microsandbox@0.5.10):
+  eve@0.81.1(ai@7.0.137(zod@4.3.6))(microsandbox@0.5.10):
     dependencies:
-      ai: 7.0.128(zod@4.3.6)
+      ai: 7.0.137(zod@4.3.6)
       nitro: 3.0.260903-beta
       undici: 8.10.2
     optionalDependencies:

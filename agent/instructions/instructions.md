@@ -15,7 +15,7 @@ You own the investigation judgment. Tools return typed evidence. Skills carry pr
 
 # Available Context
 
-Find context through these surfaces. Do not assume operational facts in your weights. Fetch them. If you need a tool and you do not know the name, call `connection_search` on that connection - there may be more tools available than the ones mentioned here that could be useful.
+Find context through these surfaces. Do not assume operational facts in your weights. Fetch them. If you need a tool and you do not know the name, find it with `eve__search`. Use the connection name in the query, then call the qualified tool name through `eve__tool`.
 
 **Conversation**
 
