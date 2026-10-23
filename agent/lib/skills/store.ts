@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { z } from "zod";
 import {
   resolveSlackUser,
@@ -71,6 +72,18 @@ function pathSafe(value: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9-]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * Fits eve's runtime limit without changing stored names.
+ * The underscore separates shortened names from ordinary hyphenated identifiers.
+ */
+export function getSkillLoadName(name: string): string {
+  if (name.length <= 57) {
+    return `custom-${name}`;
+  }
+  const suffix = createHash("sha256").update(name).digest("hex").slice(0, 16);
+  return `custom_${name.slice(0, 40)}-${suffix}`;
 }
 
 export function normalizeSkillName(raw: string): string {

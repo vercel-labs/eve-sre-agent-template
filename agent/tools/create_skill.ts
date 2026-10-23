@@ -4,6 +4,7 @@ import { z } from "zod";
 import { resolveSlackUser } from "#lib/auth.ts";
 import {
   getCustomSkillStore,
+  getSkillLoadName,
   MAX_SKILL_DESCRIPTION_LENGTH,
   MAX_SKILL_MARKDOWN_LENGTH,
   MAX_SKILL_NAME_LENGTH,
@@ -72,7 +73,7 @@ export default defineTool({
         }
       );
       return {
-        loadName: `custom-${skill.name}`,
+        loadName: getSkillLoadName(skill.name),
         message: `Saved ${skill.scope} skill "${skill.name}". It becomes loadable on the next message.`,
         name: skill.name,
         scope: skill.scope,

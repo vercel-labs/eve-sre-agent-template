@@ -1,7 +1,7 @@
 import { connectSlackCredentials } from "@vercel/connect/eve";
 import {
   defaultSlackAuth,
-  type SlackChannelEvents,
+  defineSlackRenderer,
   type SlackInboundMessageContext,
   type SlackMessage,
   slackChannel,
@@ -17,7 +17,6 @@ import { getInvestigationEvidence } from "#lib/evidence.ts";
 import { buildInvestigationResultMessage } from "#lib/slack/investigation-rendering.ts";
 
 const slackCredentials = connectSlackCredentials(SLACK_CONNECTOR);
-const LINE_SPLIT = /\r?\n/u;
 
 /**
  * Shared mention/DM handler. Eve's defaults for both hooks do exactly two things
@@ -81,69 +80,39 @@ function channelWatchAuthor(
   return { isBot: author.isBot, kind: "other" };
 }
 
-function firstNonEmptyLine(text: string): string | null {
-  for (const line of text.split(LINE_SPLIT)) {
-    const trimmed = line.trim();
-    if (trimmed.length > 0) {
-      return trimmed;
-    }
-  }
-  return null;
-}
+const investigationRenderer = defineSlackRenderer({
+  events: {
+    async "message.completed"(data, channel, _ctx, next) {
+      if (data.finishReason === "tool-calls" || !data.message) {
+        await next();
+        return;
+      }
 
-/**
- * Replaces eve's default message.completed handler so terminal answers with recorded
- * evidence render as Block Kit cards instead of plain text. Everything before the post
- * mirrors the default's contract exactly: buffer the model's pre-tool narration in
- * pendingToolCallMessage (the default actions.requested handler shows it as the typing
- * indicator), clear it on terminal messages, and keep typing when there is no text.
- */
-const investigationMessageCompleted: NonNullable<
-  SlackChannelEvents["message.completed"]
-> = async (data, ctx) => {
-  if (data.finishReason === "tool-calls") {
-    ctx.state.pendingToolCallMessage = data.message
-      ? firstNonEmptyLine(data.message)
-      : null;
-    return;
-  }
+      const evidence = getInvestigationEvidence(data.turnId);
+      if (evidence.length === 0) {
+        await next();
+        return;
+      }
 
-  ctx.state.pendingToolCallMessage = null;
-
-  if (!data.message) {
-    await ctx.thread.startTyping().catch(console.error);
-    return;
-  }
-
-  const evidence = getInvestigationEvidence(data.turnId);
-
-  try {
-    if (evidence.length > 0) {
-      await ctx.thread.post(
-        buildInvestigationResultMessage(data.message, evidence)
-      );
-    } else {
-      await ctx.thread.post(data.message);
-    }
-  } catch (error) {
-    // A rejected post (e.g. invalid blocks) must not fail the turn; the evidence list
-    // remains available via evidence_list even when this delivery is lost.
-    console.error("[sre/slack] failed to post investigation answer", {
-      error: error instanceof Error ? error.message : String(error),
-      evidenceCount: evidence.length,
-      turnId: data.turnId,
-    });
-  }
-};
+      channel.state.pendingToolCallMessage = null;
+      try {
+        await channel.thread.post(
+          buildInvestigationResultMessage(data.message, evidence)
+        );
+      } catch (error) {
+        console.error("[sre/slack] failed to post investigation answer", {
+          error: error instanceof Error ? error.message : String(error),
+          evidenceCount: evidence.length,
+          turnId: data.turnId,
+        });
+      }
+    },
+  },
+});
 
 export default slackChannel({
   botName: "sre",
   credentials: slackCredentials,
-
-  events: {
-    // Replaces only eve's default message.completed; all other event defaults still run.
-    "message.completed": investigationMessageCompleted,
-  },
 
   onAppMention: respondToInboundMessage,
 
@@ -179,4 +148,6 @@ export default slackChannel({
       title: admission.title,
     };
   },
+
+  renderers: [investigationRenderer],
 });
