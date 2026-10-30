@@ -7,9 +7,6 @@ import { resolveCustomSkills } from "#lib/skills/resolver.ts";
  * "Create a runbook to follow the next time this incident occurs, following the steps we
  * performed in this incident channel"
  */
-export default defineDynamic({
-  events: {
-    "turn.started": (_event, ctx) =>
-      resolveCustomSkills(ctx.session.auth.current),
-  },
-});
+export default defineDynamic((ctx) =>
+  resolveCustomSkills(ctx.session.auth.current)
+);
