@@ -2,6 +2,7 @@ import { connectSlackCredentials } from "@vercel/connect/eve";
 import {
   defaultSlackAuth,
   defineSlackRenderer,
+  postCompletedSlackReply,
   type SlackInboundMessageContext,
   type SlackMessage,
   slackChannel,
@@ -99,17 +100,8 @@ const investigationRenderer = defineSlackRenderer({
         return;
       }
 
-      try {
-        await ctx.channel.thread.post(
-          buildInvestigationResultMessage(event.data.value, evidence)
-        );
-      } catch (error) {
-        console.error("[sre/slack] failed to post investigation answer", {
-          error: error instanceof Error ? error.message : String(error),
-          evidenceCount: evidence.length,
-          turnId: event.scope.turnId,
-        });
-      }
+      const reply = buildInvestigationResultMessage(event.data.value, evidence);
+      await postCompletedSlackReply(ctx.channel, reply);
     },
   },
 });

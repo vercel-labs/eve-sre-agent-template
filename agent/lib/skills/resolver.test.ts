@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { resolveCustomSkills } from "./resolver.ts";
+import {
+  buildCustomSkills,
+  loadCustomSkillRecords,
+  resolveCustomSkills,
+} from "./resolver.ts";
 import type { StoredSkill } from "./store.ts";
 
 const SKILL_LOAD_NAME_PATTERN = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$/;
@@ -124,4 +128,18 @@ test("continues without custom skills when storage is unavailable", async () => 
   });
 
   assert.equal(resolved, null);
+});
+
+test("loads serializable skill records before rebuilding Eve skill definitions", async () => {
+  const skills = await loadCustomSkillRecords(null, {
+    list(_auth, scope) {
+      return Promise.resolve(scope === "global" ? [globalSkill] : []);
+    },
+  });
+
+  assert.deepEqual(JSON.parse(JSON.stringify(skills)), [globalSkill]);
+  assert.equal(
+    buildCustomSkills(skills)?.["custom-deploy"]?.content,
+    "# Global"
+  );
 });

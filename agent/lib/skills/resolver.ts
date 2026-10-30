@@ -19,10 +19,20 @@ function loadableSkill(skill: StoredSkill) {
   });
 }
 
-export async function resolveCustomSkills(
+export function buildCustomSkills(skills: readonly StoredSkill[]) {
+  const entries = new Map<string, ReturnType<typeof defineSkill>>();
+  for (const skill of skills) {
+    entries.set(getSkillLoadName(skill.name), loadableSkill(skill));
+  }
+
+  return entries.size > 0 ? Object.fromEntries(entries) : null;
+}
+
+/** Loads plain JSON records so callers can memoize them before rebuilding Eve definitions. */
+export async function loadCustomSkillRecords(
   auth: SlackUserAuthLike | null | undefined,
   store: Pick<CustomSkillStore, "list"> = getCustomSkillStore()
-) {
+): Promise<StoredSkill[]> {
   const [globalResult, userResult] = await Promise.allSettled([
     Promise.resolve().then(() => store.list(null, "global")),
     Promise.resolve().then(() => store.list(auth, "user")),
@@ -43,14 +53,21 @@ export async function resolveCustomSkills(
     }
   }
 
-  const entries = new Map<string, ReturnType<typeof defineSkill>>();
+  const entries = new Map<string, StoredSkill>();
   for (const skill of globalSkills) {
-    entries.set(getSkillLoadName(skill.name), loadableSkill(skill));
+    entries.set(getSkillLoadName(skill.name), skill);
   }
   // A personal skill with the same name overrides the shared global skill.
   for (const skill of userSkills) {
-    entries.set(getSkillLoadName(skill.name), loadableSkill(skill));
+    entries.set(getSkillLoadName(skill.name), skill);
   }
 
-  return entries.size > 0 ? Object.fromEntries(entries) : null;
+  return [...entries.values()];
+}
+
+export async function resolveCustomSkills(
+  auth: SlackUserAuthLike | null | undefined,
+  store: Pick<CustomSkillStore, "list"> = getCustomSkillStore()
+) {
+  return buildCustomSkills(await loadCustomSkillRecords(auth, store));
 }

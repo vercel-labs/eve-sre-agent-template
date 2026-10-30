@@ -33,7 +33,7 @@ test("chunks Slack markdown and bounds fallback text", () => {
 });
 
 test("renders evidence in a Slack footer", () => {
-  const { blocks, text } = buildInvestigationResultMessage("Answer", [
+  const { blocks, markdown, text } = buildInvestigationResultMessage("Answer", [
     {
       finding: "Error rate increased.",
       id: "evidence-1",
@@ -48,5 +48,16 @@ test("renders evidence in a Slack footer", () => {
     ["markdown", "divider", "context"]
   );
   assert.match(JSON.stringify(blocks.at(-1)), DATADOG);
+  assert.match(markdown, ANSWER_EVIDENCE);
   assert.match(text, ANSWER_EVIDENCE);
+});
+
+test("keeps complete markdown for Eve's reply fallback when notification text is bounded", () => {
+  const { markdown, text } = buildInvestigationResultMessage(
+    "a".repeat(40_000),
+    []
+  );
+
+  assert.equal(markdown.length > text.length, true);
+  assert.equal(text.length, 39_000);
 });
