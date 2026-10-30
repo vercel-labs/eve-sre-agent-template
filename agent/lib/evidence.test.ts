@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   addInvestigationEvidence,
-  appendInvestigationEvidenceToAnswer,
   type InvestigationEvidence,
   type InvestigationEvidenceState,
   isHttpUrl,
@@ -206,26 +205,5 @@ test("renderCompactInvestigationEvidence makes missing sources visibly unverifie
   assert.equal(
     renderCompactInvestigationEvidence([]),
     "Evidence\nNo source links were recorded; treat this conclusion as unverified."
-  );
-});
-
-test("appendInvestigationEvidenceToAnswer leaves unrelated unsourced answers unchanged", () => {
-  assert.equal(
-    appendInvestigationEvidenceToAnswer("Hello there.", []),
-    "Hello there."
-  );
-});
-
-test("appendInvestigationEvidenceToAnswer appends recorded evidence", () => {
-  assert.equal(
-    appendInvestigationEvidenceToAnswer("Likely root cause: overload.", [
-      evidence(),
-    ]),
-    [
-      "Likely root cause: overload.",
-      "",
-      "## Evidence",
-      "- [API error-rate graph](https://app.datadoghq.com/metric/explorer?query=api.errors) — 5xx errors rose from 1% to 12%.",
-    ].join("\n")
   );
 });

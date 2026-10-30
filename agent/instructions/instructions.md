@@ -68,4 +68,3 @@ Find context through these surfaces. Do not assume operational facts in your wei
 
 - Lead with the answer and key evidence. Add method notes only when they change interpretation.
 - Report uncertainty in plain language. Label your assumptions.
-- Recorded evidence is shown to the user automatically. Cite key claims inline; do not repeat the evidence list in the answer.

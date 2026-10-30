@@ -64,10 +64,3 @@ export async function loadCustomSkillRecords(
 
   return [...entries.values()];
 }
-
-export async function resolveCustomSkills(
-  auth: SlackUserAuthLike | null | undefined,
-  store: Pick<CustomSkillStore, "list"> = getCustomSkillStore()
-) {
-  return buildCustomSkills(await loadCustomSkillRecords(auth, store));
-}

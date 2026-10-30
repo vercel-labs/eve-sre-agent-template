@@ -203,15 +203,3 @@ export function renderCompactInvestigationEvidence(
 
   return ["Evidence", ...evidenceLines(items, "•", slackMrkdwnLink)].join("\n");
 }
-
-export function appendInvestigationEvidenceToAnswer(
-  answer: string,
-  items: readonly InvestigationEvidence[]
-): string {
-  const evidence = renderInvestigationEvidence(items);
-  if (evidence) {
-    return `${answer.trim()}\n\n${evidence}`;
-  }
-
-  return answer;
-}
