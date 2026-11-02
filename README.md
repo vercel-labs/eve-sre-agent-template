@@ -56,6 +56,8 @@ vercel env pull
 pnpm dev
 ```
 
+`pnpm dev` uses the eve terminal UI and `/eve/v1` API. These replies cite recorded source links in the model response. Slack appends a deterministic evidence section after the model response.
+
 ## Environment configuration
 
 | Variable            | Required          | Default         | What it does                                                                                            |

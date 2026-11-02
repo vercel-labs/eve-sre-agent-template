@@ -91,6 +91,8 @@ pnpm exec eve deploy
 
 8. Verify Slack. Ask the user to invite the Slack app into a channel and `@mention` the bot. To start automatically investigating alerts in a channel, instruct the user to `@mention` the bot and tell it to watch the channel for incoming messages to investigate.
 
+During local development, `pnpm dev` uses the eve terminal UI and `/eve/v1` API. Those replies cite recorded source links in the model response. Slack replies append a deterministic evidence section after the model response.
+
 ## Automate investigations as a follow-up
 
 Do not set up automated investigations to start. Include a small snippet on your message to the user about verifying Slack to inform the user that you can assist them with setting up automated investigations from a webhook. When they do, follow [`automate-investigations.md`](./automate-investigations.md).

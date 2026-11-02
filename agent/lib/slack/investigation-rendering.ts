@@ -60,14 +60,16 @@ export function slackFallbackText(text: string): string {
 export function buildInvestigationResultMessage(
   answer: string,
   evidence: readonly InvestigationEvidence[]
-): { blocks: BlockKitBlock[]; text: string } {
+): { blocks: BlockKitBlock[]; markdown: string; text: string } {
   const footer = renderCompactInvestigationEvidence(evidence);
+  const markdown = `${answer.trim()}\n\n${footer}`;
   return {
     blocks: [
       ...buildSlackMarkdownBlocks(answer),
       { type: "divider" },
       { elements: [{ text: footer, type: "mrkdwn" }], type: "context" },
     ],
-    text: slackFallbackText(`${answer.trim()}\n\n${footer}`),
+    markdown,
+    text: slackFallbackText(markdown),
   };
 }
