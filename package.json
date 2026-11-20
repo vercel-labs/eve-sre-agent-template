@@ -20,12 +20,12 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "4.0.8",
-    "@github-tools/eve-extension": "^0.3.2",
+    "@github-tools/eve-extension": "^0.13.0",
     "@vercel/blob": "2.4.0",
-    "@vercel/connect": "0.4.2",
-    "ai": "^7.0.137",
-    "eve": "0.83.0",
-    "zod": "4.3.6"
+    "@vercel/connect": "2.9.2",
+    "ai": "7.0.173",
+    "eve": "1.2.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.9",
@@ -34,7 +34,7 @@
     "typescript": "7.0.2",
     "ultracite": "^7.10.5"
   },
-  "packageManager": "pnpm@11.7.0",
+  "packageManager": "pnpm@12.21.0",
   "engines": {
     "node": ">=24"
   }

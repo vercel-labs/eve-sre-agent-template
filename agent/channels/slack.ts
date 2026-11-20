@@ -82,30 +82,30 @@ function channelWatchAuthor(
 
 const investigationRenderer = defineSlackRenderer({
   events: {
-    async "message.completed"(data, channel, _ctx, next) {
-      if (data.finishReason === "tool-calls" || !data.message) {
+    async "content.completed"(event, { channel }, next) {
+      const { data } = event;
+      const turnId = event.scope?.turnId;
+      if (
+        data.kind !== "text" ||
+        data.phase !== "reply" ||
+        typeof data.value !== "string" ||
+        !data.value ||
+        !turnId
+      ) {
         await next();
         return;
       }
 
-      const evidence = getInvestigationEvidence(data.turnId);
+      const evidence = getInvestigationEvidence(turnId);
       if (evidence.length === 0) {
         await next();
         return;
       }
 
-      channel.state.pendingToolCallMessage = null;
-      try {
-        await channel.thread.post(
-          buildInvestigationResultMessage(data.message, evidence)
-        );
-      } catch (error) {
-        console.error("[sre/slack] failed to post investigation answer", {
-          error: error instanceof Error ? error.message : String(error),
-          evidenceCount: evidence.length,
-          turnId: data.turnId,
-        });
-      }
+      // eve's final-reply wrapper handles delivery failures.
+      await channel.thread.post(
+        buildInvestigationResultMessage(data.value, evidence)
+      );
     },
   },
 });
